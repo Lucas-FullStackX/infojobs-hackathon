@@ -5,14 +5,15 @@ import { signIn, useSession } from 'next-auth/react';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Button, ButtonSize, ButtonVariant } from 'side-ui';
+import { api } from '~/utils/api';
 import { Icon, IconCatalog } from '~/components';
 
 type HomeProps = {};
 
 const Home: NextPage = (_props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const { t } = useTranslation(['nextjs']);
-  const { data: sessionData } = useSession();
-
+  const { data } = api.test.testapi.useQuery();
+  console.log(data);
   return (
     <>
       <Head>
@@ -33,17 +34,6 @@ const Home: NextPage = (_props: InferGetServerSidePropsType<typeof getServerSide
           <div className="mb-4 w-96">
             <h1 className="text-center text-3xl font-bold text-slate-50">{t('nextjs:home.pov')}</h1>
           </div>
-          {sessionData ? (
-            <p className="text-lg text-white">{sessionData.user.name}</p>
-          ) : (
-            <Button
-              variant={ButtonVariant.secondary}
-              size={ButtonSize.sm}
-              onClick={() => signIn('discord')}
-            >
-              {t('nextjs:component.button.logInWithDiscord')}
-            </Button>
-          )}
         </div>
 
         {/* Footer options */}

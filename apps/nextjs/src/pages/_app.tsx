@@ -20,11 +20,7 @@ const App = ({ Component, pageProps: { session, ...pageProps } }: AppPropsWithLa
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout ?? ((page) => page);
 
-  return (
-    <SessionProvider session={session as Session}>
-      {getLayout(<Component {...pageProps} />)}
-    </SessionProvider>
-  );
+  return getLayout(<Component {...pageProps} />);
 };
 
 export default api.withTRPC(appWithTranslation(App, nextI18NextConfig));
