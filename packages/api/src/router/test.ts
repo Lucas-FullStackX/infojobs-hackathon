@@ -1,3 +1,4 @@
+import { TOKEN } from '../common';
 import { createTRPCRouter, publicProcedure } from '../trpc';
 
 export const testRouter = createTRPCRouter({
@@ -8,8 +9,7 @@ export const testRouter = createTRPCRouter({
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization:
-              'Basic Mzc4MzhjZWMwM2U1NDRmZGFhMTJiMWJhYzc0ZTNiMWU6RFBaQTNwSkZVTlB3ZkRGVUFXVmI0d2pqaWZKcWdTNy9taDEwQkNUS1orRDlIMHk0dnA=',
+            Authorization: `Basic ${TOKEN}`,
           },
         },
       );

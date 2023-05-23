@@ -1,5 +1,6 @@
 import { accountRouter } from './router/account';
 import { authRouter } from './router/auth';
+import { infoJobsRouter } from './router/infoJobs';
 import { postRouter } from './router/post';
 import { testRouter } from './router/test';
 import { userRouter } from './router/user';
@@ -11,6 +12,7 @@ export const appRouter = createTRPCRouter({
   user: userRouter,
   post: postRouter,
   test: testRouter,
+  infoJobs: infoJobsRouter,
 });
 
 // export type definition of API

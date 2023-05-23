@@ -1,10 +1,8 @@
 import type { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
-import { signIn, useSession } from 'next-auth/react';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { Button, ButtonSize, ButtonVariant } from 'side-ui';
 import { api } from '~/utils/api';
 import { Icon, IconCatalog } from '~/components';
 
@@ -12,12 +10,11 @@ type HomeProps = {};
 
 const Home: NextPage = (_props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const { t } = useTranslation(['nextjs']);
-  const { data } = api.test.testapi.useQuery();
-  console.log(data);
+  const { data: authUrl } = api.infoJobs.authUrl.useQuery();
   return (
     <>
       <Head>
-        <title>Indie Creators HQ - Side Project Starter Kit</title>
+        <title>InfoJobs Hackathon</title>
         <meta name="description" content="Side Project Starter Kit" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -25,21 +22,25 @@ const Home: NextPage = (_props: InferGetServerSidePropsType<typeof getServerSide
         <div className="relative flex h-min w-min flex-none flex-col flex-wrap items-center justify-center gap-4 overflow-hidden p-0">
           <div className="mb-2 flex flex-row items-center gap-4 text-white">
             <a
-              className="text-2xl font-semibold text-secondary-300 transition hover:opacity-80"
+              className="text-secondary-300 text-2xl font-semibold transition hover:opacity-80"
               href="/"
             >
-              Side Project Starter Kit
+              InfoJobs Hackathon
             </a>
           </div>
           <div className="mb-4 w-96">
             <h1 className="text-center text-3xl font-bold text-slate-50">{t('nextjs:home.pov')}</h1>
           </div>
         </div>
-
+        <div>
+          <a href={authUrl} className="btn-primary btn w-64 rounded-full">
+            Button
+          </a>
+        </div>
         {/* Footer options */}
         <div className="flex flex-wrap justify-center gap-x-1 gap-y-3 sm:gap-x-2 lg:justify-start">
           <Link
-            className="group relative isolate flex flex-none items-center gap-x-3 rounded-lg px-2 py-0.5 font-medium text-white/30 transition-colors hover:text-primary-200"
+            className="hover:text-primary-200 group relative isolate flex flex-none items-center gap-x-3 rounded-lg px-2 py-0.5 font-medium text-white/30 transition-colors"
             href="https://discord.com/invite/77guznJ8mZ"
             target="_blank"
           >
@@ -52,7 +53,7 @@ const Home: NextPage = (_props: InferGetServerSidePropsType<typeof getServerSide
             <Icon icon={IconCatalog.heart} className="h-4 w-4 text-red-500" isSolid />
             <span className="text-slate-400">by the</span>
             <Link
-              className="font-medium text-slate-400 underline decoration-dashed decoration-0 underline-offset-4 transition-colors hover:text-primary-200"
+              className="hover:text-primary-200 font-medium text-slate-400 underline decoration-dashed decoration-0 underline-offset-4 transition-colors"
               href="https://github.com/Indie-Creator-Community"
               target="_blank"
             >
