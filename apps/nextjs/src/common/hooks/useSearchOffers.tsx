@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { api } from '~/utils/api';
 
 export default function useSearchOffers() {
   const [value, setValue] = useState('');
 
   const { data, isLoading } = api.infoJobs.getOfferByCategory.useQuery({
-    category: value,
+    q: value,
+    maxResults: 5,
   });
 
-  const handleChange = (event: any) => {
-    console.log(event.target.value);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
 

@@ -1,4 +1,4 @@
-import { TOKEN } from '../common';
+import { TOKEN, objToParams } from '../common';
 import { type GetOffersResponseType } from '../schema/infoJobs.schema';
 
 export const fetchInfoJobs = async <T>(url: string): Promise<T> => {
@@ -14,13 +14,11 @@ export const fetchInfoJobs = async <T>(url: string): Promise<T> => {
   return response as T;
 };
 
-export const getOffersByCategory = async (category: string) => {
-  if (category.length === 0) {
+export const getOffersByCategory = async (obj: { q: string; [key: string]: unknown }) => {
+  if (obj.q.length === 0) {
     return {};
   }
-  const response = await fetchInfoJobs<GetOffersResponseType>(
-    `7/offer?q=${category}&prefix=programa&maxResults=5`,
-  );
-  console.log(category);
+  const params = objToParams(obj);
+  const response = await fetchInfoJobs<GetOffersResponseType>(`7/offer?${params}`);
   return response;
 };

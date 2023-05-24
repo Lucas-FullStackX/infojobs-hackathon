@@ -3,7 +3,8 @@ import { z, type TypeOf } from 'zod';
 /*------------------------------------*/
 
 export const getOffersInput = z.object({
-  category: z.string(),
+  q: z.string(),
+  maxResults: z.number().optional(),
 });
 export type GetOfferInputType = TypeOf<typeof getOffersInput>;
 

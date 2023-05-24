@@ -6,6 +6,6 @@ import { createTRPCRouter, publicProcedure } from '../trpc';
 export const infoJobsRouter = createTRPCRouter({
   getOfferByCategory: publicProcedure
     .input(getOffersInput)
-    .query(({ input }) => getOffersByCategory(input.category)),
+    .query(({ input }) => getOffersByCategory(input)),
   authUrl: publicProcedure.query(() => AUTH_URL),
 });

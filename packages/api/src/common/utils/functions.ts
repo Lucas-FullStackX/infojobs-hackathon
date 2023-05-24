@@ -25,3 +25,13 @@ export const normalizeString = (str: string) => {
   }
   return ret.join('');
 };
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const objToParams = (queryParams: { [key: string]: any }) => {
+  const url = new URL('');
+  Object.entries(queryParams).forEach(([key, value]) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    url.searchParams.append(key, value);
+  });
+  return url.toString();
+};
