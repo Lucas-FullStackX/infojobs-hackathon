@@ -9,5 +9,8 @@
   },
   "home": {
     "pov": "Una forma sencilla de recompensar a tu comunidad"
+  },
+  "form": {
+    "select": "Selecciona tu profesion"
   }
 }

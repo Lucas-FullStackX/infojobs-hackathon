@@ -9,49 +9,66 @@ export type GetOfferInputType = TypeOf<typeof getOffersInput>;
 
 /*------------------------------------*/
 
-const Category = z.object({
-  id: z.number(),
-  value: z.string(),
-});
+export interface GetOffersResponseType {
+  currentPage?: number;
+  pageSize?: number;
+  totalResults?: number;
+  currentResults?: number;
+  totalPages?: number;
+  availableSortingMethods?: string[];
+  sortBy?: string;
+  items?: Item[];
+  dataLayer?: DataLayer;
+  offers?: Item[];
+}
 
-const Author = z.object({
-  id: z.string(),
-  name: z.string(),
-  uri: z.string(),
-  logoUrl: z.string(),
-  corporateResponsive: z.boolean(),
-  showCorporativeHeader: z.boolean(),
-});
+export interface DataLayer {
+  search_terms: string;
+  offer_search_page: string;
+  offer_search_page_limit: string;
+  region_level2_id: string;
+}
 
-const getOffersResponse = z.object({
-  id: z.string(),
-  title: z.string(),
-  province: Category,
-  city: z.string(),
-  link: z.string(),
-  category: Category,
-  contractType: Category,
-  subcategory: Category,
-  salaryMin: Category,
-  salaryMax: Category,
-  salaryPeriod: Category,
-  experienceMin: Category,
-  workDay: Category,
-  study: Category,
-  published: z.date(),
-  updated: z.date(),
-  author: Author,
-  requirementMin: z.string(),
-  bold: z.boolean(),
-  applications: z.string(),
-  subSegment: z.number(),
-  executive: z.boolean(),
-  salaryDescription: z.string(),
-  urgent: z.boolean(),
-  color: z.boolean(),
-  teleworking: Category.optional(), // optional property
-});
+export interface Item {
+  id: string;
+  title: string;
+  province: Category;
+  city: string;
+  link: string;
+  category: Category;
+  contractType: Category;
+  subcategory: Category;
+  salaryMin: Category;
+  salaryMax: Category;
+  salaryPeriod: Category;
+  experienceMin: Category;
+  workDay: Category;
+  study: Category;
+  published: Date;
+  updated: Date;
+  author: Author;
+  requirementMin: string;
+  bold: boolean;
+  applications: string;
+  subSegment: number;
+  executive: boolean;
+  salaryDescription: string;
+  urgent: boolean;
+  color: boolean;
+}
 
-export type GetOffersResponseType = TypeOf<typeof getOffersResponse>;
+export interface Author {
+  id: string;
+  name: string;
+  uri: string;
+  logoUrl: string;
+  corporateResponsive: boolean;
+  showCorporativeHeader: boolean;
+}
+
+export interface Category {
+  id: number;
+  value: string;
+}
 
 /*------------------------------------*/

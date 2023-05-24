@@ -27,7 +27,7 @@ const CallbackPage = () => {
           sessionStorage.setItem('credentials', JSON.stringify(credentials));
 
           // Redirigir a la página principal u otra página de tu elección
-          // router.push('/');
+          router.push('/');
         } else {
           // Manejar el error en caso de que la petición no sea exitosa
           console.error('Error al guardar las credenciales');
